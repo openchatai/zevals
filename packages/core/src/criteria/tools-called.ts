@@ -1,4 +1,4 @@
-import { Message, ToolCall } from '../eval-runner';
+import { Message, ToolCall } from '../message';
 import { Criterion, CriterionResult } from './criterion';
 
 type AssertionResult =

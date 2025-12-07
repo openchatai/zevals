@@ -1,4 +1,4 @@
-import { type Message } from '../eval-runner';
+import { type Message } from '../message';
 
 /** A way of evaluating the subject's responses. */
 export interface Criterion<Output> {

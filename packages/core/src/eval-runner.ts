@@ -1,30 +1,9 @@
 import { z, ZodObject, ZodRawShape } from 'zod';
+import { Agent } from './agent';
 import { Criterion, CriterionResult } from './criteria/criterion';
+import { Message } from './message';
 import { Segment, SegmentEvaluationPromise } from './segment';
 import { groupBy } from './utils';
-
-export type ToolCall = {
-  id?: string;
-  name: string;
-  args: Record<string, unknown>;
-  result?: Record<string, any>;
-};
-export type AIMessage = {
-  role: 'assistant';
-  content: string;
-  tool_calls?: Array<ToolCall>;
-  context?: AgentResponseGenerationContext;
-};
-export type UserMessage = { role: 'user'; content: string };
-export type ToolResultMessage = {
-  role: 'tool';
-  tool_call_id?: string;
-  name: string;
-  content: Record<string, unknown>;
-};
-export type SystemMessage = { role: 'system'; content: string };
-
-export type Message = AIMessage | UserMessage | ToolResultMessage | SystemMessage;
 
 export type EvaluatedSegment =
   | { type: 'message'; message: Message }
@@ -33,28 +12,6 @@ export type EvaluatedSegment =
       evalResult: CriterionResult<any>;
       criterion: Criterion<any>;
     };
-
-/** The context that was used by the agent to generate a response. */
-export type AgentResponseGenerationContext = {
-  /**
-   * Messages that were used as prompts to produce the response.
-   * If not specified, the chat history prior to the response will be used for evaluation.
-   */
-  prompt_used?: Message[];
-  /** The tool calls that were made by the LLM. */
-  tool_calls?: Array<ToolCall & { result?: Record<string, any> }>;
-};
-
-/** The result of invoking a {@link Agent} to generate an AI response to be evaluated. */
-export type AgentInvocationResult = {
-  /** The final response, i.e. the message returned to the user. */
-  message: AIMessage;
-};
-
-/** An AI agent to evaluate. */
-export interface Agent {
-  invoke(params: { messages: Array<Message> }): Promise<AgentInvocationResult>;
-}
 
 /** An AI to be used for extracting structured output from the conversation. */
 export interface Judge {

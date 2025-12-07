@@ -1,5 +1,6 @@
+import { Agent } from './agent';
 import { Criterion, CriterionResult } from './criteria/criterion';
-import { Agent, AIMessage, Message, UserMessage } from './eval-runner';
+import { AIMessage, Message, UserMessage } from './message';
 
 /** An AI that plays the role of a user. */
 export interface SyntheticUser {

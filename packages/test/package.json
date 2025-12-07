@@ -3,7 +3,7 @@
   "private": true,
   "description": "ZEvals tests",
   "type": "module",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "scripts": {
     "build": "tsc"
   },

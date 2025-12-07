@@ -1,6 +1,6 @@
 {
   "name": "zevals",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Simple, practical AI evaluations for AI apps.",
   "private": true,
   "scripts": {
